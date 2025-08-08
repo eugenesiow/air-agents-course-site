@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiscal Analysis Lab - Hands-on Building Agents with the AI Refinery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.1.3/24/outline/bars-3.min.css" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Active link style */
+        .sidebar-link.active {
+            background-color: #4338ca; /* indigo-700 */
+            color: #ffffff;
+        }
+        /* Parent link active style when a child is active */
+        .sidebar-link.parent-active {
+            color: #e0e7ff; /* indigo-200 */
+            font-weight: 500;
+        }
+        /* Sub-link styles */
+        .sub-links {
+            display: none;
+        }
+        .parent-active + .sub-links {
+            display: block;
+        }
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-gray-900 dark:text-gray-200">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-gray-900 text-white w-64 flex-shrink-0 flex-col fixed inset-y-0 left-0 z-30 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out border-r border-gray-700">
+            <!-- Logo/Header -->
+            <div class="px-6 py-4 h-16 flex items-center border-b border-gray-700">
+                <h1 class="text-xl font-bold text-white">AI Refinery Course</h1>
+            </div>
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-4 space-y-2">
+                <a href="index.html" class="sidebar-link flex items-center px-4 py-2.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">Home</a>
+                
+                <div>
+                    <a href="notebooks.html" class="sidebar-link flex items-center px-4 py-2.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">About Jupyter Notebooks</a>
+                </div>
+
+                <div>
+                    <a href="refinery.html" class="sidebar-link flex items-center px-4 py-2.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">About the AI Refinery</a>
+                </div>
+
+                <div>
+                    <a href="agents.html" class="sidebar-link flex items-center px-4 py-2.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">About Agents</a>
+                    <div class="sub-links ml-4 mt-2 space-y-2 border-l border-gray-700">
+                        <a href="agents.html#research" class="sidebar-link block pl-4 pr-2 py-1.5 text-sm text-gray-400 hover:text-white">Research Agent</a>
+                        <a href="agents.html#flow" class="sidebar-link block pl-4 pr-2 py-1.5 text-sm text-gray-400 hover:text-white">Flow Super Agent</a>
+                    </div>
+                </div>
+
+                 <div>
+                    <a href="lab.html" class="sidebar-link flex items-center px-4 py-2.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200">Fiscal Analysis Lab</a>
+                     <div class="sub-links ml-4 mt-2 space-y-2 border-l border-gray-700">
+                        <a href="#objective" class="sidebar-link block pl-4 pr-2 py-1.5 text-sm text-gray-400 hover:text-white">Objective</a>
+                        <a href="#steps" class="sidebar-link block pl-4 pr-2 py-1.5 text-sm text-gray-400 hover:text-white">Step-by-Step</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top bar for mobile -->
+            <header class="md:hidden bg-gray-900 border-b border-gray-700 h-16 flex items-center justify-between px-4">
+                 <div class="text-xl font-bold text-white">AI Refinery Course</div>
+                <button id="menu-btn" class="text-gray-600 dark:text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 p-6 md:p-10 overflow-y-auto">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-4xl font-bold text-slate-800 dark:text-white mb-4">Fiscal Analysis Lab</h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-300 mb-12">This is where the theory comes to life. In this hands-on lab, you will use a Jupyter Notebook to build and interact with your own AI agents to analyze a real-world financial document.</p>
+
+                    <div class="text-center my-12">
+                        <a href="https://mybinder.org/v2/gh/eugenesiow/air-agents-course/HEAD" target="_blank" class="inline-block bg-blue-600 text-white font-bold text-xl py-4 px-10 rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
+                            Launch Lab Notebook
+                        </a>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-3">Note: The server may take a few moments to start up.</p>
+                    </div>
+
+                    <!-- Objective Section -->
+                    <section id="objective" class="mb-16">
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Objective</h2>
+                            <div class="space-y-4 text-lg text-slate-600 dark:text-slate-300">
+                                <p>The goal of this lab is to build a specialized AI agent that can read and answer questions about a PDF of a corporate fiscal report. You will learn how to load the document, process its content for an AI to understand, and then build agents capable of both simple lookups and complex analysis.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Steps Section -->
+                    <section id="steps">
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700">
+                            <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-6">Step-by-Step Guide</h2>
+                            <ol class="relative border-l border-gray-200 dark:border-gray-700 space-y-8">                  
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 text-blue-800 dark:text-blue-300">1</span>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Setup and Environment</h3>
+                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Install the necessary software and securely load your AI Refinery credentials.</p>
+                                </li>
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 text-blue-800 dark:text-blue-300">2</span>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Document Processing</h3>
+                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Load the fiscal report PDF, extract its text, and break it into smaller, AI-friendly chunks.</p>
+                                </li>
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 text-blue-800 dark:text-blue-300">3</span>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Create a Custom Search Tool</h3>
+                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Build a specialized search function that allows an agent to find relevant information within the document.</p>
+                                </li>
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 text-blue-800 dark:text-blue-300">4</span>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Build a Research Agent</h3>
+                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Create a simple agent and equip it with your custom search tool to answer specific questions.</p>
+                                </li>
+                                <li class="ml-6">
+                                    <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 text-blue-800 dark:text-blue-300">5</span>
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Build a Flow Super Agent</h3>
+                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Set up an advanced agent that can orchestrate a multi-step analysis for more complex queries.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            const navLinks = document.querySelectorAll('.sidebar-link');
+            
+            const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+            const currentHash = window.location.hash;
+
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href').split("#")[0];
+                const linkHash = link.getAttribute('href').split("#")[1] ? '#' + link.getAttribute('href').split("#")[1] : null;
+
+                // Check if it's the main page link
+                if (linkPage === currentPage && !link.closest('.sub-links')) {
+                     link.classList.add('parent-active');
+                }
+
+                // Check for sub-links
+                if(linkPage === currentPage && linkHash && linkHash === currentHash) {
+                    link.classList.add('active');
+                    if (link.closest('.sub-links')) {
+                        link.closest('.sub-links').previousElementSibling.classList.add('parent-active');
+                    }
+                }
+            });
+
+            // Make parent of active sublink also active
+            const activeSubLink = document.querySelector('.sidebar-link.active');
+            if (activeSubLink && activeSubLink.closest('.sub-links')) {
+                 activeSubLink.closest('.sub-links').previousElementSibling.classList.add('parent-active');
+            }
+
+
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>
